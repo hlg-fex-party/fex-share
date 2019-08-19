@@ -4,7 +4,7 @@
 
 # 📜 是什么
 
-该仓库主要是一个文档形式的存储库，主要目的是记录与回顾[hlg-fex-party](https://github.com/hlg-fex-party)线下聚会交流的内容，包括但不局限于技术[从前端到全栈]、人生哲学思考等等内容。
+该仓库主要是一个文档形式的存储库，主要目的是记录与回顾[hlg-fex-party](https://github.com/hlg-fex-party)线下聚会交流的内容，包括但不局限于技术[从前端到全栈]、外国语、学习方法、管理经验、人生哲学思考等等内容。
 
 # 🏛 关于 [hlg-fex-party](https://github.com/hlg-fex-party)，也可简称地狱学习小组
 
