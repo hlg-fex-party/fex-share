@@ -8,7 +8,7 @@
 
 ## 关于 [hlg-fex-party](https://github.com/hlg-fex-party)
 
-回龙观前端线下分享交流聚会，是由前端大佬 [老常](https://github.com/Joo-fanChang)、[老张](https://github.com/thinkupp) 发起的一个回龙观前端爱好者或者从业者的一个线下交流聚会，旨在构建一个可以持续学习、交流和分享的一个线下平台，推动前端社区更好的发展。
+回龙观前端线下分享交流聚会，是由前端大佬 [老常](https://github.com/Joo-fanChang)、[老张](https://github.com/thinkupp) 发起的一个回龙观前端爱好者或者从业者的一个线下交流聚会，旨在构建一个可以持续学习、交流和分享的一个线下平台，推动前端社区更好的发展。
 
 ## 往期线下交流记录
 
@@ -31,7 +31,7 @@ Topics:
 
 由于能力有限，发现有不对的地方，欢迎读者 PR
 
-### 优雅地 PR
+### 优雅地 PR
 
 - 首先 Fork 仓库
 - 克隆该仓库，同步并提交修改
