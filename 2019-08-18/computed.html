@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>computed</title>
+</head>
+<body>
+<h1>变量 v 已注入到 window 中</h1>
+<h1>请在控制台里手动修改 computed 中依赖的变量</h1>
+
+<script>
+    window.v = {
+        data: {
+            apple: 3,
+            water: 3,
+            smoke: 20,
+        },
+
+        computed: {
+            count() {
+                return this.apple + this.water + this.smoke
+            },
+            price() {
+                return this.apple * 20 + this.water * 5 + this.smoke * 30
+            }
+        }
+    };
+
+    const Dep = initDep();
+
+    function initDep() {
+        const Dep = {
+            target: null,
+            subs: {}
+        };
+
+        /*
+        * 依赖收集
+        * @param {string} key data的key
+        * */
+        Dep.depend = function(key) {
+            if (!this.subs[key]) {
+                this.subs[key] = [];
+            }
+
+            const subs = this.subs[key];
+            if (subs.indexOf(item => item.getter === this.target.getter) === -1) {
+                subs.push(this.target);
+            }
+        };
+
+        /*
+        * 重新计算
+        * @param {string} key 改变的依赖项
+        * */
+        Dep.notify = function(key) {
+            this.subs[key].forEach(item => item.getter());
+        };
+
+        return Dep;
+    }
+
+    function initData() {
+        for(let [key] of Object.entries(v.data)) {
+            // 将 data 代理到 v
+            proxyData(key, v.data[key]);
+            // 监听 data
+            defineData(key, v.data[key]);
+        }
+    }
+
+    /*
+    * 将data下的变量挂载到根节点
+    * @param {string} key 代理的变量名
+    * @param {*} value 对应的值
+    * */
+    function proxyData(key, value) {
+        const obj = v.data;
+        v[key] = value;
+        const options = {
+            enumerable: true,
+            configurable: true,
+            get: function() {
+                return obj[key];
+            },
+            set: function(newValue) {
+                obj[key] = newValue;
+            }
+        };
+
+        Object.defineProperty(v, key, options)
+    }
+
+    /*
+    * 劫持v.data中变量的get和set
+    * */
+    function defineData(key, value) {
+        Object.defineProperty(v.data, key, {
+            configurable: true,
+            enumerable: true,
+            get: function() {
+                if (Dep.target) {
+                    // 收集依赖
+                    Dep.depend(key);
+                }
+                return value;
+            },
+            set: function(newValue) {
+                if (newValue === value) return;
+                value = newValue;
+                Dep.notify(key);
+            }
+        })
+    }
+
+    function initComputed() {
+        for(let [key, value] of Object.entries(v.computed)) {
+            if (key in v.data) {
+                // 保证data中没有变量名和computed中的变量名重复
+                throw new Error(`The computed property "${key}" is already defined in data.`)
+            }
+
+            Dep.target = {
+                key,
+                getter: function() {
+                    v[key] = value.call(v);
+                }
+            };
+
+            Dep.target.getter();
+        }
+    }
+
+    initData();
+    initComputed();
+</script>
+</body>
+</html>
