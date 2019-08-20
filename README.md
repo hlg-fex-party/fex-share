@@ -28,7 +28,7 @@ Member: [老常](https://github.com/Joo-fanChang)、[老张](https://github.com/
 
 Topics:
 
-- [寒冬高频 js 面试题](https://github.com/hlg-fex-party/fex-share/blob/master/2019-08-18/Summary%20of%20Interview.md)
+- [ES6的继承冷门知识点](https://github.com/hlg-fex-party/fex-share/blob/master/2019-08-18/Summary%20of%20Interview.md)
 - [手写个简单的Computed](https://github.com/hlg-fex-party/fex-share/blob/master/2019-08-18/computed.md)
 
 # 🛠 关于贡献
